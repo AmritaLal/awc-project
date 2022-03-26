@@ -1,0 +1,41 @@
+ristoranti = [
+    {
+        "id":1,
+        "restaurant":"Ristoria Pizzorante",
+        "mail":"albijojoba@mail.com",
+        "password":"albertopw",
+        "address": "Via degli Olmi, 4",
+        "partitaiva" : "25458565896",
+        "telephone": "0399935656",
+        "firstname" : "Alberto",
+        "lastname" : "Jojoba",
+        "latitude" : "45.466660",
+        "longitude" : "9.147831"
+    },
+    {
+        "id": 2,
+        "restaurant":"Pasta, mi hai rotto!",
+        "mail":"sofiaberga@mail.com",
+        "password":"sofiapw",
+        "address": "Via Cesare Battisti, 12",
+        "partitaiva" : "58545812378",
+        "telephone": "0368884741",
+        "firstname" : "Sofia",
+        "lastname" : "Bergamaschi",
+        "latitude" : "45.464361",
+        "longitude" : "9.188564"
+    },
+    {
+        "id": 3,
+        "restaurant": "All you can meet",
+        "mail":"quasilopez@mail.com",
+        "password":"quasimodopw",
+        "address": "Via Giuseppe Garibaldi, 445",
+        "partitaiva" : "56581219753",
+        "telephone": "0399954826",
+        "firstname" : "Quasimodo",
+        "lastname" : "Lopez  ",
+        "latitude" : "45.494403",
+        "longitude" : "9.206432"
+    }
+]

@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/e5d002ab59.js"></script>
+    <script src="prodotti1.json"></script>
+    <title>EatMI</title>
+</head>
+
+
+<body onload="decidiCosaMostrare()">
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="index.html">EatMI</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <a class="nav-link" href="logristo.html" role="button" aria-haspopup="true" aria-expanded="false"
+            style="position: absolute; right: 1px;">Accedi</a>
+    </nav>
+
+    <div class="inforistorante">
+        <div class="login-form">
+            <div id="ristorante"></div>
+            <div id="nome"></div>
+            <div id="mail"></div>
+            <div id="indirizzo"></div>
+            <div id="telefono"></div>
+            <div id="partitaiva"></div>
+
+        </div>
+
+        <div class="casa">
+            <form>
+                <div class="col-sm-10 offset-sm-4">
+                    <h3>Inserisci un piatto a<br> tua scelta nel menu!</h3>
+                </div>
+                <div class="form-group row" style="margin-top: 40px;">
+                    <label for="nomepiatto" class="col-sm-4 col-form-label">Nome piatto</label>
+                    <div class="col-sm-7">
+                        <input type="nomepiatto" class="form-control" id="nomepiatto" required>
+                    </div>
+                </div>
+                <div class="form-group row" style="margin-top: 40px;">
+                    <label for="tipo" class="col-sm-4 col-form-label">Tipologia</label>
+                    <div class="col-sm-7">
+                        <select id="tipo" name="piatti">
+                            <option value="">Tipologia di piatto</option>
+                            <option value="panini">Hamburger</option>
+                            <option value="pizza">Pizza</option>
+                            <option value="pasta">Pasta</option>
+                            <option value="piadina">Piadine</option>
+                            <option value="insalate">Insalate</option>
+                            <option value="dolci">Dolci</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row" style="margin-top: 40px;">
+                    <label for="prezzo" class="col-sm-4 col-form-label">Prezzo</label>
+                    <div class="col-sm-7">
+                        <input type="number" class="form-control" id="prezzo" min="4" max="10" value="4">
+
+                    </div>
+                </div>
+
+                <div class="form-group row" style="margin-top: 40px;">
+                    <label for="npiatti" class="col-sm-4 col-form-label">Numero ingredienti </label>
+                    <div class="col-sm-7">
+                        <input type="number" class="form-control" id="npiatti" name="npiatti" value="1" min="1" max="6"
+                            placeholder="Massimo sei">
+                    </div>
+                    <label class="col-sm-4 col-form-label"></label>
+                    <div class="col-sm-7">
+                        <a href="#" id="aggiungiigredienti" onclick="aggiungiIngredienti()"
+                            style="float: right;">Aggiungi ingredienti</a>
+                    </div>
+                </div>
+
+                <div id="container">
+                    <br>
+                </div>
+                <div class="form-group row" style="margin-top: 20px;">
+                    <div class="col-sm-10 offset-sm-4">
+                        <button type="button" class="btn btn-primary" onclick="aggiungiPiattoScelto()">Aggiungi al
+                            menù</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="piattigiascelti" style="margin-left: 8%;"></div>
+    <div id="piattiristoratore" style="margin-bottom: 10em;"> </div>
+
+    <div class="casa">
+            <div class="col-sm-10 offset-sm-4">
+                <h3>Modifica dati</h3>
+            </div>
+
+            <form  onsubmit=" return modificaPassword()"> 
+            <div class="form-group row" style="margin-top: 20px;">
+                <label for="password" class="col-sm-4 col-form-label">Password</label>
+                <div class="col-sm-8">
+                    <input type="password" class="form-control" id="password" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                    title="La password deve contenere almeno un numero, almeno una lettera minuscola, almeno una lettera maiuscola e minimo 8 caratteri.">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-10 offset-sm-9">
+                    <button type="submit" class="btn btn-primary"
+                        style="margin-bottom: 15px;">Submit</button>
+                </div>
+            </div>
+        </form>
+
+            <form onsubmit=" return modificaTelefono()">
+            <div class="form-group row" style="margin-top: 20px;">
+                <label for="telephone" class="col-sm-4 col-form-label">Telefono</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="telephone" placeholder="Telefono">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-10 offset-sm-9">
+                    <button type="submit"  class="btn btn-primary"
+                        style="margin-bottom: 15px;">Submit</button>
+                </div>
+            </div>
+        </form>
+
+
+    </div>
+    <div class="casa" style="background-color: #ffbfaa">
+        <div class="form-group row">
+            <div class="col-sm-10 offset-sm-3">
+                <label for="">Vuoi eliminare il profilo del tuo ristorante?</label>
+                <button type="button" onclick="eliminaRistorante()" class="btn btn-danger"
+                    style="margin-bottom: 15px; margin-top:15px">Elimina </button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script>
+        var lista = [];
+        localStorage.setItem('prodotti', JSON.stringify(prodotti));
+        var jsonProdotti = JSON.parse(localStorage.getItem('prodotti'));
+        var jsonRistoranti = JSON.parse(localStorage.getItem('ristoranti'));
+        var jsonRistoratore = JSON.parse(localStorage.getItem('ristoratore'));
+
+        ristorante = "<p><i class='fas fa-utensils' style = 'margin-right: 8px'></i>" + " " + jsonRistoratore.restaurant + "</p>";
+        document.getElementById("ristorante").innerHTML = ristorante;
+
+        nome = "<p><i class='fas fa-user' style = 'margin-right: 8px'></i>" + " " + jsonRistoratore.firstname + " " + jsonRistoratore.lastname + "</p>";
+        document.getElementById("nome").innerHTML = nome;
+
+        mail = "<p><i class='fas fa-envelope'style = 'margin-right: 8px'></i>" + " " + jsonRistoratore.mail + "</p>";
+        document.getElementById("mail").innerHTML = mail;
+
+        indirizzo = "<p><i class='fas fa-map-marker' style = 'margin-right: 8px'></i>" + " " + jsonRistoratore.address + "</p>";
+        document.getElementById("indirizzo").innerHTML = indirizzo;
+
+        telefono = "<p><i class='fas fa-phone-alt' style = 'margin-right: 8px'></i>" + " " + jsonRistoratore.telephone + "</p>";
+        document.getElementById("telefono").innerHTML = telefono;
+
+        partitaiva = "<p><i class='fas fa-sticky-note' style = 'margin-right: 8px'></i>" + " " + jsonRistoratore.partitaiva + "</p>";
+        document.getElementById("partitaiva").innerHTML = partitaiva;
+
+        //Aggiungi input ingredienti 
+
+        var number;
+        function aggiungiIngredienti() {
+            number = document.getElementById("npiatti").value; // alla var number diamo il valore del numero degli ingredienti che mettiamo, variano da 1 a 6 max
+            console.log(number)
+            var container = document.getElementById("container");
+            while (container.hasChildNodes()) { // se all'interno della casella abbiamo inserito qualcosa allora:
+                container.removeChild(container.lastChild); //while svuota il  div container 
+            }
+            for (i = 0; i < number; i++) {
+                if (number > 6) {
+                    return;  // il numero degli ingredienti possibili che possiamo aggiungere varia da 1 a 6 e non di più.
+                }
+                container.appendChild(document.createTextNode("Ingrediente " + (i + 1))); // all'interno del container abbiamo "Ingrediente1 e la casella con dentro l'ingrediente"
+                var input = document.createElement("input");
+                input.id = i + 1; 
+                input.type = "text"; // id e type servono per identificare ogni input
+                container.appendChild(input);
+                container.appendChild(document.createElement("br"));
+            }
+
+        }
+
+        function aggiungiPiattoScelto() {
+            listaMista = [];
+            listaProdotti1 = JSON.parse(localStorage.getItem(jsonRistoratore.mail)); // chiave: mail del ristoratore con valore il prodotto a scelta aggiunto da noi
+
+            var nome = document.getElementById("nomepiatto").value;  
+            var tipo = document.getElementById("tipo").value;
+            var prezzo = document.getElementById("prezzo").value;
+            var ingredienti = []; // array vuoto 
+            var id;
+            var immagine;
+            switch (tipo) {  // switch che occorre in base al tipo di piatto che scegliamo e di conseguenza torna quel tipo di immagine 
+                case "panini":
+                    immagine = "images/panini.jpg"
+                    break;
+                case "pizza":
+                    immagine = "images/pizza.jpg"
+                    break;
+                case "piadina":
+                    immagine = "images/piadine.jpg"
+                    break;
+                case "insalate":
+                    immagine = "images/insalata.jpg"
+                    break;
+                case "pasta":
+                    immagine = "images/pasta.jpg"
+                    break;
+                case "dolci":
+                    immagine = "images/dolci.jpg"
+                    break;
+
+            }
+            id = Math.floor(Math.random() * 1000) + 100; 
+            for (i = 0; i < number; i++) {
+                ingredienti.push(document.getElementById(i + 1).value);
+            }
+            var singoloPiatto = { //array di ingredienti 
+                "id": id,
+                "name": nome,
+                "type": tipo,
+                "image": immagine,
+                "price": prezzo,
+                "ingredients": ingredienti
+            };
+            if (listaProdotti1 != null) { 
+
+                console.log(listaProdotti1)
+                listaProdotti1.push(singoloPiatto);
+                localStorage.setItem(jsonRistoratore.mail, JSON.stringify(listaProdotti1));
+                location.reload();
+                localStorage.setItem(jsonRistoratore.mail + "2", JSON.stringify("piatto"));
+            } else {
+                console.log(listaProdotti1) 
+                listaMista.push(singoloPiatto);
+
+                localStorage.setItem(jsonRistoratore.mail, JSON.stringify(listaMista));
+                location.reload();
+                localStorage.setItem(jsonRistoratore.mail + "2", JSON.stringify("piatto"));
+
+
+            }
+
+        }
+
+
+        function decidiCosaMostrare() {
+            piattiGiaScelti = JSON.parse(localStorage.getItem(jsonRistoratore.mail + "1"))
+            piattoPersonalizzato = JSON.parse(localStorage.getItem(jsonRistoratore.mail + "2"))
+            if (piattiGiaScelti === null && piattoPersonalizzato === null) {
+
+                mostraLista(); 
+
+            } else if (piattiGiaScelti === null && piattoPersonalizzato != null) {
+                mostraProdottiScelti(); 
+
+                mostraLista();
+
+            } else if (piattiGiaScelti != null && piattoPersonalizzato != null) {
+                mostraProdottiScelti();
+            } else if (piattiGiaScelti != null && piattoPersonalizzato == null) {
+                mostraProdottiScelti();
+            }
+        }
+
+        function mostraProdottiScelti() {
+            piattiGiaScelti = JSON.parse(localStorage.getItem(jsonRistoratore.mail)) // dal session prendiamo i piatti del ristoratore (chiave)
+            console.log(piattiGiaScelti);
+
+            txt = "<h3>I tuoi Piatti</h3><br><table id='tabellabella'><tr><th>Prodotto</th><th>Prezzo</th><th>Ingredienti</th></tr> ";
+            for (x in piattiGiaScelti) {
+                console.log(piattiGiaScelti[x]);
+                console.log(x);
+
+                txt += "<tr><td>" + piattiGiaScelti[x].name + "</td><td>" + piattiGiaScelti[x].price + " € </td><td>" + piattiGiaScelti[x].ingredients + "</td></tr>";
+            }
+            document.getElementById("piattigiascelti").innerHTML = txt + "</table>";
+        }
+
+
+        function mostraLista() {
+            console.log("mostraLista");
+            txt = "";
+            txt += "<div class='row'>"
+            for (x in jsonProdotti) {
+                txt += " <div class='flip-card'> <div class='flip-card-inner'> <div class='flip-card-front'>"
+                txt += "<img src='" + jsonProdotti[x].image + "'style='width:100%'>";
+                txt += "<p style='float: left; display: inline; margin-left: 10px; margin-top: 3px;'>" + jsonProdotti[x].name + "</p>"
+                txt += "<p style='float: right; display: inline; margin-right: 10px; margin-top: 3px;'>" + jsonProdotti[x].price + "€ </p>"
+                txt += "</div> <div class='flip-card-back'> <ul>"
+                for (i in jsonProdotti[x].ingredients) {
+                    txt += "<li>" + jsonProdotti[x].ingredients[i] + "</li>"
+                }
+                txt += "</ul>  <button type='button' onclick='aggiungiLista(" + x + ")'>Aggiungi ai tuoi piatti</button></div> </div> </div>"
+            }
+
+            txt += "</div>  <button onclick='aggiungiPiattiaLS()' style='margin-right: 10em; margin-bottom: 10em; float: right;'>Aggiungi piatti al tuo menu</button>";
+
+
+            document.getElementById("piattiristoratore").innerHTML = txt;
+
+
+
+        }
+
+        function aggiungiLista(x) {
+
+            if (JSON.parse(localStorage.getItem(jsonRistoratore.mail)) != null) { 
+                lista = JSON.parse(localStorage.getItem(jsonRistoratore.mail)); 
+
+            }
+
+            obj = {
+                "id": jsonProdotti[x].id,
+                "name": jsonProdotti[x].name,
+                "price": jsonProdotti[x].price,
+                "image": jsonProdotti[x].image,
+                "type": jsonProdotti[x].type,
+                "ingredients": jsonProdotti[x].ingredients  // aggiungiamo obj che è un array con le info del prodotto
+            };
+
+            /* var listaProdotti = {};
+             listaProdotti["mail"] = jsonRistoratore.mail;*/
+
+            var index = lista.findIndex(function (item, i) { //find index torna l'indice del primo elemento che soddisfa la richiesta 
+                return item.id == obj.id;
+            });
+
+            if (index === -1) {  
+                lista.push(obj); //non piglia il prodotto più di una volta
+            }
+            /* listaProdotti["lista"] = lista;
+             console.log(lista);*/
+            localStorage.setItem(jsonRistoratore.mail, JSON.stringify(lista)); // settiamo nel session come chiave mail del ristoratore e come valore la lista 
+
+
+        }
+
+        function aggiungiPiattiaLS() {
+
+            var chiave = "1";
+            localStorage.setItem(jsonRistoratore.mail + chiave, JSON.stringify("mail"));
+            location.reload();
+
+        }
+
+
+
+        function modificaPassword() {
+            password = document.getElementById("password").value;  
+            for (x in jsonRistoranti) {   
+                if (jsonRistoranti[x] != null) {
+
+                    if (jsonRistoratore.mail == jsonRistoranti[x].mail) {
+                        jsonRistoranti[x].password = password;
+                    }
+                }
+            }
+            localStorage.setItem('ristoranti', "")
+            localStorage.setItem('ristoranti', JSON.stringify(jsonRistoranti))
+         
+            window.location.replace("logristo.html");
+            return false
+
+        }
+
+        function modificaTelefono() {
+            telefono = document.getElementById("telephone").value;
+            for (x in jsonRistoranti) {
+                if (jsonRistoranti[x] != null) {
+
+                    if (jsonRistoratore.mail == jsonRistoranti[x].mail) {
+                        jsonRistoranti[x].telephone = telefono;
+                    }
+                }
+            }
+            localStorage.setItem('ristoranti', "")
+            localStorage.setItem('ristoranti', JSON.stringify(jsonRistoranti))
+            window.location.replace("logristo.html");
+            return false
+
+        }
+
+        function eliminaRistorante() {
+            for (x in jsonRistoranti) {
+                if (jsonRistoranti[x] != null) {
+                    if (jsonRistoratore.mail == jsonRistoranti[x].mail) {
+
+
+                        delete jsonRistoranti[x];
+                    }
+                }
+
+            }
+            localStorage.setItem('ristoranti', "")
+            localStorage.setItem('ristoranti', JSON.stringify(jsonRistoranti))
+            window.location.href = "regristo.html";
+
+
+        }
+
+    </script>
+
+    <footer class="footer">
+        <p>EatMI</p>
+        <div class="footer-bottom">
+            <div class="container">
+                <p class="pull-left copyright"> Copyright © EatMI 2020. All right reserved. </p>
+
+            </div>
+        </div>
+    </footer>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

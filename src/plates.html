@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css" type="text/css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <title>EatMI</title>
+  <script src="prodotti1.json"></script>
+</head>
+
+<body onload="mostraProdotti()">
+
+
+
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <a class="navbar-brand" href="index.html">EatMI</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </nav>
+
+  <h1 style="text-align:center;">Di cosa hai voglia?</h1>
+  <div class="generic">
+
+
+    <div class="container">
+      <div class="barra">
+        <form id="filtro">
+
+          <select id="type" name="piatti">
+            <option value="">Tipologia di piatto</option>
+            <option value="panini">Hamburger</option>
+            <option value="pizza">Pizza</option>
+            <option value="pasta">Pasta</option>
+            <option value="piadina">Piadine</option>
+            <option value="insalate">Insalate</option>
+            <option value="dolci">Dolci</option>
+          </select>
+
+          <select id="price" name="prezzo">
+            <option value="">Fascia di prezzo</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
+          <button type="button" onclick="filtraGenerale()" form="filtro">Filtra</button>
+          <input type="text" placeholder="Search.." id="cerca" onkeyup="cercaNome()">
+
+
+        </form>
+
+        <div id="carrellodiv" class="dropdown">
+          <span>🛒</span>
+          <span id="numeroelementi"></span>
+          <div id="carrello" style= 'min-width: 20em' class="dropdown-content">
+            <p>Carrello vuoto!</p>
+
+
+          </div>
+        </div>
+
+      </div>
+
+
+      <div id="piatti"></div>
+    </div>
+
+  </div>
+
+  <footer class="footer">
+    <p>EatMI</p>
+    <div class="footer-bottom">
+      <div class="container">
+        <p class="pull-left copyright"> Copyright © EatMI 2020. All right reserved. </p>
+
+      </div>
+    </div>
+  </footer>
+
+
+
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+  <script type="text/javascript" src="script.js"></script>
+  <script type="text/javascript" src="prodotti1.json"></script>
+</body>
+
+</html>
